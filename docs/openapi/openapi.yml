@@ -1,0 +1,10 @@
+openapi: 3.0.0
+info:
+  title: API PCM
+  description: 'Documentación para API PCM'
+  contact:
+    email: lucasgvargas96@gmail.com
+  version: 1.0.0
+servers:
+- url: localhost
+paths:
