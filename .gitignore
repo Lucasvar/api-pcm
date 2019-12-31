@@ -62,3 +62,5 @@ typings/
 
 # ignore the specification file
 narrativa
+backlog
+db_attr
