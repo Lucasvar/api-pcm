@@ -39,19 +39,18 @@ const app = express()
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
 // Import routers
-const materiasRouter = require('./routes/materias.js')
 const signupRouter = require('./routes/signup.js')
 const loginRouter = require('./routes/login.js')
-
+const usersRouter = require('./routes/users.js')
 // Other modules
 app.use(bodyParser.json())
 app.use(morgan('combined', { stream: accessLogStream }))
 app.use(helmet())
 
 // Use routers
-app.use('/materias', materiasRouter)
 app.use('/signup', signupRouter)
 app.use('/login', loginRouter)
+app.use('/users', usersRouter)
 
 //app.use(morgan('dev'))
 
