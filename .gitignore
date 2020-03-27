@@ -64,3 +64,5 @@ typings/
 narrativa
 backlog
 db_attr
+TABLAS.sql
+tokens.*
