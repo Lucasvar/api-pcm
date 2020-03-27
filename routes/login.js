@@ -1,5 +1,3 @@
-//TODO: PASAR CLAVE_SECRETA A .ENV
-
 const { Router } = require('express')
 const db = require('../db');
 const bcrypt = require('bcrypt');
@@ -17,21 +15,20 @@ router.post('/', function(req, res, next) {
 			console.log('ERROR!')
 			return next(err)
 		}
-			bcrypt.compare(password, data.rows[0].password, function(err, result) {
-				if(result) {
-					const payload = {
-						iss: 'api-pcm',
-						username: username,
-						id_user: data.rows[0].id
-					}
-					const token = jwt.sign(payload, process.env.PASSWORD_JWT)
-					res.status(200).send({token})
+		bcrypt.compare(password, data.rows[0].password, function(err, result) {
+			if(result) {
+				const payload = {
+					iss: 'api-pcm',
+					username: username,
+					id_user: data.rows[0].id
 				}
-				else {
-					res.send(`Wrong username or password, try again.`)
-				}
-			});
+				const token = jwt.sign(payload, process.env.PASSWORD_JWT)
+				res.status(200).send({token})
+			}
+			else {
+				res.send(`Wrong username or password, try again.`)
+			}
+		});
 	})
 })
-
 module.exports = router;
