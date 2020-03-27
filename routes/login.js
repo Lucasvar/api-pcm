@@ -9,7 +9,7 @@ const router = Router()
 router.post('/', function(req, res, next) {
 	const username = req.body.username;
   const password = req.body.password;
-	const text = 'SELECT username, password FROM accounts WHERE username = $1;'
+	const text = 'SELECT * FROM accounts WHERE username = $1;'
 	const values = [username]
 	
 	db.query(text, values, (err, data) => {
@@ -21,10 +21,10 @@ router.post('/', function(req, res, next) {
 				if(result) {
 					const payload = {
 						iss: 'api-pcm',
-						username: username
+						username: username,
+						id_user: data.rows[0].id
 					}
 					const token = jwt.sign(payload, process.env.PASSWORD_JWT)
-					console.log({token})
 					res.status(200).send({token})
 				}
 				else {
