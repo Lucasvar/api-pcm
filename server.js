@@ -14,7 +14,7 @@ const db = knex({
   });
   console.log(db.select('*').from('materias'));*/
   server.on('listening', function() {
-      console.info(`listening on http://localhost:8080`)
+      console.info(`listening...`)
     })
 
-server.listen(8080)
+server.listen(process.env.PORT)
